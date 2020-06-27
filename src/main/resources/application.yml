@@ -1,0 +1,18 @@
+server:
+  port: ${SERVER_PORT:8001}
+
+spring:
+  application:
+    name: library-automation
+  jpa:
+    open-in-view: false
+    show-sql: false
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 10000
+      minimum-idle: 2
+      idle-timeout: 10000
+    url:
+    username:
+    password:
