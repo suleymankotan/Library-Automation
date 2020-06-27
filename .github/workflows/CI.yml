@@ -3,8 +3,7 @@ name: CI
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
+
 
 jobs:
   Test:
@@ -60,8 +59,6 @@ jobs:
         run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
-
-
 
   Build:
     name: Build - Docker Hub Push & GitHub Docker Packages Push
