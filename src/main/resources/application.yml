@@ -2,17 +2,27 @@ server:
   port: ${SERVER_PORT:8001}
 
 spring:
+  devtools:
+    add-properties: true
   application:
     name: library-automation
   jpa:
     open-in-view: false
-    show-sql: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
   datasource:
     hikari:
       maximum-pool-size: 10
       connection-timeout: 10000
       minimum-idle: 2
       idle-timeout: 10000
-    url:
-    username:
-    password:
+    url: jdbc:postgresql://localhost:5432/Library
+    username: postgres
+    password: Testdb01.
