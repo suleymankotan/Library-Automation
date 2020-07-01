@@ -19,12 +19,12 @@ public class BookEntity {
     private Long id;
     private String name;
     @ManyToOne(fetch = FetchType.EAGER)
-    private CategoryEntity categoryId;
+    private CategoryEntity category;
     private Long bookSize;
     @ManyToOne(fetch = FetchType.EAGER)
-    private WriterEntity writerId;
+    private WriterEntity writer;
     @ManyToOne(fetch = FetchType.EAGER)
-    private PublisherEntity publisherId;
+    private PublisherEntity publisher;
     @Temporal(TemporalType.DATE)
     private Date createdDate;
     @Temporal(TemporalType.DATE)

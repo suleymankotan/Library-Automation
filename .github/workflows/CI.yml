@@ -75,13 +75,13 @@ jobs:
         run: mvn -B clean package -DskipTests --file pom.xml}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.REPO }} .
+        run: docker build -t docker.pkg.github.com/suleymankotan/library-automation/library:0.0.${{github.run_number}}-${{github.sha}} .
 
       - name: Github Docker Packages Login
         run: docker login docker.pkg.github.com -u suleymankotan -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: Github Tag Docker image
-        run: docker tag ${{ secrets.REPO }}  docker.pkg.github.com/suleymankotan/library-automation/library:0.0.${{github.run_number}}-${{github.sha}} && docker tag ${{ secrets.REPO }}  docker.pkg.github.com/suleymankotan/library-automation/library:latest
+        run: docker tag   docker.pkg.github.com/suleymankotan/library-automation/library:0.0.${{github.run_number}}-${{github.sha}}  docker.pkg.github.com/suleymankotan/library-automation/library:latest
 
       - name: Github Package Publish Docker image
         run: docker push docker.pkg.github.com/suleymankotan/library-automation/library:0.0.${{github.run_number}}-${{github.sha}} && docker push docker.pkg.github.com/suleymankotan/library-automation/library:latest
