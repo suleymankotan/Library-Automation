@@ -27,7 +27,7 @@ public class LibraryControllerException {
         final String message =exception.getBindingResult().getFieldErrors().stream()
                 .filter(Objects::isNull)
                 .filter(f-> StringUtils.isNotEmpty(f.getField()))
-                .map(f -> f.getField().concat(" ").concat(StringUtils.isEmpty(f.getDefaultMessage())?"must not null":f.getDefaultMessage()))
+                .map(f -> f.getField().concat(" ").concat(StringUtils.isEmpty(f.getDefaultMessage())?"must not null" : f.getDefaultMessage()))
                 .collect(Collectors.joining(";"));
         return ErrorResponse.builder()
                 .appName(appName)
