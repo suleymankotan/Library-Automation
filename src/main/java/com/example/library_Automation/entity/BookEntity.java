@@ -18,12 +18,12 @@ public class BookEntity {
     @Id
     private Long id;
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private CategoryEntity categoryId;
     private Long bookSize;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private WriterEntity writerId;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private PublisherEntity publisherId;
     @Temporal(TemporalType.DATE)
     private Date createdDate;
