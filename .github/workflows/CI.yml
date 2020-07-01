@@ -3,8 +3,7 @@ name: CI
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
+
 
 jobs:
   Test:
@@ -17,7 +16,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: Testdb01.
-          POSTGRES_DB: hoaxify
+          POSTGRES_DB: Library
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -45,7 +44,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: Testdb01.
-          POSTGRES_DB: hoaxify
+          POSTGRES_DB: Library
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -61,8 +60,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
 
-
-
   Build:
     name: Build - Docker Hub Push & GitHub Docker Packages Push
     runs-on: ubuntu-18.04
@@ -75,22 +72,19 @@ jobs:
         with:
           java-version: 1.8
       - name: Build
-        run: mvn -B clean package -DskipTests --file pom.xml
+        run: mvn -B clean package -DskipTests --file pom.xml}
 
-#      - name: Login to Docker Hub
-#        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.REPO }} .
 
-#      - name: Build Docker image
-#        run: docker build -t ${{ secrets.REPO }} .
+      - name: Github Docker Packages Login
+        run: docker login docker.pkg.github.com -u suleymankotan -p ${{ secrets.GITHUB_TOKEN }}
 
-#      - name: Github Docker Packages Login
-#        run: docker login docker.pkg.github.com -u suleymankotan -p ${{ secrets.GITHUB_TOKEN }}
+      - name: Github Tag Docker image
+        run: docker tag ${{ secrets.REPO }}  docker.pkg.github.com/suleymankotan/library-automation/library:0.0.${{github.run_number}}-${{github.sha}} && docker tag ${{ secrets.REPO }}  docker.pkg.github.com/suleymankotan/library-automation/library:latest
 
-#      - name: Github Tag Docker image
-#        run: docker tag ${{ secrets.REPO }}  docker.pkg.github.com/suleymankotan/webservice-hoaxify/webservice-hoaxify:0.1.${{github.run_number}}-${{github.sha}} && docker tag ${{ secrets.REPO }}  docker.pkg.github.com/suleymankotan/webservice-hoaxify/webservice-hoaxify:latest
+      - name: Github Package Publish Docker image
+        run: docker push docker.pkg.github.com/suleymankotan/library-automation/library:0.0.${{github.run_number}}-${{github.sha}} && docker push docker.pkg.github.com/suleymankotan/library-automation/library:latest
 
-#      - name: Github Package Publish Docker image
-#        run: docker push docker.pkg.github.com/suleymankotan/webservice-hoaxify/webservice-hoaxify:0.1.${{github.run_number}}-${{github.sha}} && docker push docker.pkg.github.com/suleymankotan/webservice-hoaxify/webservice-hoaxify:latest
-
-#      - name: Github Package Docker logout
-#        run: docker logout
+      - name: Github Package Docker logout
+        run: docker logout

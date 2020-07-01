@@ -20,12 +20,9 @@
 		<spring-cloud.version>Greenwich.SR3</spring-cloud.version>
 		<org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
 		<code.coverage.exclusions>
-			**/filter/**/*
+			**/filter/**/*,**/configuration/**/*,**/exception/**/*,**/model/**/*,**/repository/**/*,**/service/**/*,**/controller/**/*
 		</code.coverage.exclusions>
 	</properties>
-
-
-
 
 
 	<dependencyManagement>
@@ -46,10 +43,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -135,9 +132,19 @@
 			<version>20180813</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.6</version>
+		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
 		</dependency>
 	</dependencies>
 
@@ -149,8 +156,8 @@
 				<sonar.sources>.</sonar.sources>
 				<sonar.inclusions>src/main/java/**,src/main/resources/**</sonar.inclusions>
 				<sonar.exclusions>${code.coverage.exclusions}</sonar.exclusions>
-				<sonar.projectKey>wkrzywiec_NoticeBoard</sonar.projectKey>
-				<sonar.organization>wkrzywiec</sonar.organization>
+				<sonar.projectKey>suleymankotan-Library-Automation</sonar.projectKey>
+				<sonar.organization>suleymankotan</sonar.organization>
 				<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 			</properties>
 			<activation>
@@ -167,6 +174,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 				<plugin>
 					<groupId>org.sonarsource.scanner.maven</groupId>
 					<artifactId>sonar-maven-plugin</artifactId>
