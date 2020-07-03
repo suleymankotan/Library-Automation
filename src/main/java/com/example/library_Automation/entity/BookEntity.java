@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -16,6 +16,7 @@ import java.util.Date;
 @Builder
 public class BookEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -25,10 +26,7 @@ public class BookEntity {
     private WriterEntity writer;
     @ManyToOne(fetch = FetchType.EAGER)
     private PublisherEntity publisher;
-    @Temporal(TemporalType.DATE)
-    private Date createdDate;
-    @Temporal(TemporalType.DATE)
-    private Date updateDate;
-    @Temporal(TemporalType.DATE)
-    private Date publicDate;
+    private LocalDateTime createdDate;
+    private LocalDateTime updateDate;
+    private LocalDateTime publicDate;
 }

@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +15,8 @@ import java.util.Date;
 public class BookRequest {
     private String name;
     private Long bookSize;
-    private Date publicDate;
+    private LocalDateTime publicDate;
+    private String publisherName;
     private String writerName;
     private String writerSurname;
     private String categoryName;

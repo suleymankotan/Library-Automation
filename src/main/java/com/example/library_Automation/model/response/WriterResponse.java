@@ -1,24 +1,15 @@
-package com.example.library_Automation.entity;
+package com.example.library_Automation.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
-
 @Data
-@Entity
-@Table(name = "writer")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WriterEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class WriterResponse {
     private String name;
     private String surname;
-
 }
