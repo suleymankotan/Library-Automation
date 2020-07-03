@@ -2,11 +2,10 @@ package com.example.library_Automation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@RestController
+@EnableCaching
 public class LibraryAutomationApplication {
 
 	public static void main(String[] args) {

@@ -7,12 +7,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
-public class BookServiceTest {
 
+@ExtendWith(MockitoExtension.class)
+public class WriterServiceTest {
     @InjectMocks
-    private BookService bookService;
+    private WriterService writerService;
 
     @Spy
-    private BookConverter bookConverter = Mappers.getMapper(BookConverter.class);
+    private final BookConverter bookConverter = Mappers.getMapper(BookConverter.class);
 }

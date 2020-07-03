@@ -1,4 +1,10 @@
+FROM maven:3.6.3 AS build
+RUN mkdir -p /workspace
+WORKDIR /workspace
+COPY ./ /workspace
+RUN mvn -B -f pom.xml clean package -DskipTests
+
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/Library-Automation-*-SNAPSHOT.jar
-COPY ${JAR_FILE} app.jar
+COPY --from=build /workspace/target/*.jar app.jar
 EXPOSE 8001
+ENTRYPOINT ["java","-jar","app.jar"]

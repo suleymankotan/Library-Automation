@@ -8,10 +8,9 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class BookServiceTest {
-
+public class PublisherServiceTest {
     @InjectMocks
-    private BookService bookService;
+    private PublisherService publisherService;
 
     @Spy
     private BookConverter bookConverter = Mappers.getMapper(BookConverter.class);

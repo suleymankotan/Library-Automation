@@ -1,4 +1,4 @@
-name: Test
+name: Test-Build
 
 on:
   push:
@@ -29,9 +29,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-      - name: Build with Maven
-        run: mvn -B clean package -DskipTests --file pom.xml
 
       - name: Run unit tests
         run: mvn -B test --file pom.xml
