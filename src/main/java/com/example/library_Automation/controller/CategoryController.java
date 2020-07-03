@@ -1,6 +1,7 @@
 package com.example.library_Automation.controller;
 
 
+import com.example.library_Automation.model.request.CategoryRequest;
 import com.example.library_Automation.model.request.CategoryUpdateRequest;
 import com.example.library_Automation.model.response.BaseResponse;
 import com.example.library_Automation.model.response.CategoryResponse;
@@ -22,17 +23,17 @@ public class CategoryController {
     }
 
     @PostMapping
-    public BaseResponse saveCategory(){
-        return null;
+    public BaseResponse saveCategory(@RequestBody @Valid CategoryRequest request){
+        return categoryService.saveCategory(request);
     }
 
     @PutMapping
     public BaseResponse updateCategory(@RequestBody @Valid CategoryUpdateRequest request){
-        return null;
+        return categoryService.updateCategory(request);
     }
 
     @DeleteMapping("/{categoryName}")
     public BaseResponse deleteCategory(@PathVariable("categoryName") String name){
-        return null;
+        return categoryService.deleteCategory(name);
     }
 }

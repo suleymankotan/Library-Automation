@@ -17,26 +17,22 @@ public class WriterController {
     private final WriterService writerService;
     @GetMapping
     public List<WriterResponse> getAllWriter(){
-        return null;
+        return writerService.getAllWriter();
     }
 
-    @GetMapping("/{writerName}")
-    public WriterResponse getByWriterName(@PathVariable("writerName") String name){
-        return null;
-    }
 
     @PostMapping
-    public BaseResponse saveWriter(){
-        return null;
+    public BaseResponse saveWriter(@RequestBody @Valid WriterRequest request){
+        return writerService.saveWriter(request);
     }
 
     @PutMapping
     public BaseResponse updateWriter(@RequestBody @Valid WriterRequest request){
-        return null;
+        return writerService.updateWriter(request);
     }
 
     @DeleteMapping("/{writerName}")
     public BaseResponse deleteWriter(@PathVariable("writerName") String name){
-        return null;
+        return writerService.deleteWriter(name);
     }
 }
